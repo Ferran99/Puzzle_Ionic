@@ -104,6 +104,8 @@
 // expose private configuration value required for background operation
 @interface WKWebViewConfiguration ()
 
+@property (setter=_setAlwaysRunsAtForegroundPriority:, nonatomic) bool _alwaysRunsAtForegroundPriority;
+
 @end
 
 
@@ -115,6 +117,8 @@
 @synthesize engineWebView = _engineWebView;
 
 NSTimer *timer;
+
+NSString * const IONIC_SCHEME = @"ionic";
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -177,6 +181,8 @@ NSTimer *timer;
         return configuration;
     }
 
+    //required to stop wkwebview suspending in background too eagerly (as used in background mode plugin)
+    configuration._alwaysRunsAtForegroundPriority = ![settings cordovaBoolSettingForKey:@"WKSuspendInBackground" defaultValue:YES];
     configuration.allowsInlineMediaPlayback = [settings cordovaBoolSettingForKey:@"AllowInlineMediaPlayback" defaultValue:YES];
     configuration.suppressesIncrementalRendering = [settings cordovaBoolSettingForKey:@"SuppressesIncrementalRendering" defaultValue:NO];
     configuration.allowsAirPlayForMediaPlayback = [settings cordovaBoolSettingForKey:@"MediaPlaybackAllowsAirPlay" defaultValue:YES];
@@ -191,11 +197,7 @@ NSTimer *timer;
     if(bind == nil){
         bind = @"localhost";
     }
-    NSString *scheme = [settings cordovaSettingForKey:@"iosScheme"];
-    if(scheme == nil || [scheme isEqualToString:@"http"] || [scheme isEqualToString:@"https"]  || [scheme isEqualToString:@"file"]){
-        scheme = @"ionic";
-    }
-    self.CDV_LOCAL_SERVER = [NSString stringWithFormat:@"%@://%@", scheme, bind];
+    self.CDV_LOCAL_SERVER = [NSString stringWithFormat:@"%@://%@",IONIC_SCHEME, bind];
 
     self.uiDelegate = [[CDVWKWebViewUIDelegate alloc] initWithTitle:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"]];
 
@@ -236,8 +238,9 @@ NSTimer *timer;
     WKWebViewConfiguration* configuration = [self createConfigurationFromSettings:settings];
     configuration.userContentController = userContentController;
 
-    self.handler = [[IONAssetHandler alloc] initWithBasePath:[self getStartPath] andScheme:scheme];
-    [configuration setURLSchemeHandler:self.handler forURLScheme:scheme];
+    self.handler = [[IONAssetHandler alloc] init];
+    [self.handler setAssetPath:[self getStartPath]];
+    [configuration setURLSchemeHandler:self.handler forURLScheme:IONIC_SCHEME];
 
     // re-create WKWebView, since we need to update configuration
     // remove from keyWindow before recreating
@@ -269,7 +272,9 @@ NSTimer *timer;
         [wkWebView.configuration.userContentController addScriptMessageHandler:(id < WKScriptMessageHandler >)self.viewController name:CDV_BRIDGE_NAME];
     }
 
+    //if (![settings cordovaBoolSettingForKey:@"KeyboardDisplayRequiresUserAction" defaultValue:NO]) {
     [self keyboardDisplayDoesNotRequireUserAction];
+    //}
 
     if ([settings cordovaBoolSettingForKey:@"KeyboardAppearanceDark" defaultValue:NO]) {
         [self setKeyboardAppearanceDark];
@@ -302,15 +307,9 @@ NSTimer *timer;
 - (void) keyboardDisplayDoesNotRequireUserAction {
     Class class = NSClassFromString(@"WKContentView");
     NSOperatingSystemVersion iOS_11_3_0 = (NSOperatingSystemVersion){11, 3, 0};
-    NSOperatingSystemVersion iOS_12_2_0 = (NSOperatingSystemVersion){12, 2, 0};
-    char * methodSignature = "_startAssistingNode:userIsInteracting:blurPreviousNode:changingActivityState:userObject:";
-
-    if ([[NSProcessInfo processInfo] isOperatingSystemAtLeastVersion: iOS_12_2_0]) {
-        methodSignature = "_elementDidFocus:userIsInteracting:blurPreviousNode:changingActivityState:userObject:";
-    }
 
     if ([[NSProcessInfo processInfo] isOperatingSystemAtLeastVersion: iOS_11_3_0]) {
-        SEL selector = sel_getUid(methodSignature);
+        SEL selector = sel_getUid("_startAssistingNode:userIsInteracting:blurPreviousNode:changingActivityState:userObject:");
         Method method = class_getInstanceMethod(class, selector);
         IMP original = method_getImplementation(method);
         IMP override = imp_implementationWithBlock(^void(id me, void* arg0, BOOL arg1, BOOL arg2, BOOL arg3, id arg4) {

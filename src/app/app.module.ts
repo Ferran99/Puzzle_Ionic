@@ -1,57 +1,32 @@
-import {BrowserModule} from '@angular/platform-browser';
-import {NgModule, ErrorHandler} from '@angular/core';
-import {IonicApp, IonicModule, IonicErrorHandler} from 'ionic-angular';
-import {MyApp} from './app.component';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { RouteReuseStrategy } from '@angular/router';
 
-import {IonicPage} from '../pagines/inici/inici';
-import {DetallsPage} from '../pagines/detalls/detalls';
-import {LlistaPage} from '../pagines/llista/llista';
-import {BaseDadesPage} from "../pagines/baseDades/baseDades";
-import {CameraPage} from "../pagines/camera/camera";
-import {GeoPage} from "../pagines/geolocalitzacio/geolocalitzacio";
-import {BaseDadesService} from '../providers/baseDadesService';
+import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 
-import {StatusBar} from '@ionic-native/status-bar';
-import {SplashScreen} from '@ionic-native/splash-screen';
-import {Camera} from '@ionic-native/camera';
-import {Geolocation} from '@ionic-native/geolocation';
-import {AndroidPermissions} from '@ionic-native/android-permissions';
-import {SQLite} from '@ionic-native/sqlite';
+import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 
 @NgModule({
-  declarations: [
-    MyApp,
-    IonicPage,
-    DetallsPage,
-    LlistaPage,
-    BaseDadesPage,
-    CameraPage,
-    GeoPage
-  ],
-  imports: [
-    BrowserModule,
-    IonicModule.forRoot(MyApp),
-  ],
-  bootstrap: [IonicApp],
-  entryComponents: [
-    MyApp,
-    IonicPage,
-    DetallsPage,
-    LlistaPage,
-    BaseDadesPage,
-    CameraPage,
-    GeoPage
-  ],
+  declarations: [AppComponent],
+  entryComponents: [],
+  imports: [BrowserModule, 
+            IonicModule.forRoot(), 
+            AppRoutingModule,
+            BrowserAnimationsModule,
+            MatButtonModule,
+            MatCheckboxModule,
+          ],
   providers: [
     StatusBar,
     SplashScreen,
-    SQLite,
-    BaseDadesService,
-    Camera,
-    AndroidPermissions,
-    Geolocation,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
-  ]
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+  ],
+  bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule {}

@@ -8,15 +8,6 @@
     self.basePath = assetPath;
 }
 
-- (instancetype)initWithBasePath:(NSString *)basePath andScheme:(NSString *)scheme {
-    self = [super init];
-    if (self) {
-        _basePath = basePath;
-        _scheme = scheme;
-    }
-    return self;
-}
-
 - (void)webView:(WKWebView *)webView startURLSchemeTask:(id <WKURLSchemeTask>)urlSchemeTask
 {
     NSString * startPath = @"";
@@ -24,7 +15,7 @@
     NSString * stringToLoad = url.path;
     NSString * scheme = url.scheme;
 
-    if ([scheme isEqualToString:self.scheme]) {
+    if ([scheme isEqualToString:IONIC_SCHEME]) {
         if ([stringToLoad hasPrefix:@"/_app_file_"]) {
             startPath = [stringToLoad stringByReplacingOccurrencesOfString:@"/_app_file_" withString:@""];
         } else {
