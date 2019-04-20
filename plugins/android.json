@@ -31,6 +31,12 @@
     },
     "cordova-plugin-android-permissions": {
       "PACKAGE_NAME": "com.mirePuzzle.app"
+    },
+    "cordova-sqlite-storage": {
+      "PACKAGE_NAME": "io.ionic.starter"
+    },
+    "cordova-plugin-x-toast": {
+      "PACKAGE_NAME": "io.ionic.starter"
     }
   },
   "dependent_plugins": {}

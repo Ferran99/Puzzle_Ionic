@@ -6,6 +6,8 @@ import { IonicModule } from '@ionic/angular';
 
 import { SelectComponent } from './selectImg/selectImg.component';
 import { FooterBarComponent } from './footer-bar/footer-bar.component';
+import {SQLite} from '@ionic-native/sqlite/ngx';
+import {BaseDadesService} from '../services/baseDadesService.service';
 
 @NgModule({
   declarations: [
@@ -20,9 +22,11 @@ import { FooterBarComponent } from './footer-bar/footer-bar.component';
     SelectComponent,
     FooterBarComponent
   ],
-  providers:[
+  providers: [
     Camera,
-    AndroidPermissions
+    AndroidPermissions,
+    SQLite,
+    BaseDadesService
   ],
 })
 export class ComponentsModule { }

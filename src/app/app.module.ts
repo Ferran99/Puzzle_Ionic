@@ -11,12 +11,14 @@ import { AppRoutingModule } from './app-routing.module';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+import {SQLite} from '@ionic-native/sqlite/ngx';
+import {BaseDadesService} from './services/baseDadesService.service';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, 
-            IonicModule.forRoot(), 
+  imports: [BrowserModule,
+            IonicModule.forRoot(),
             AppRoutingModule,
             BrowserAnimationsModule,
             MatButtonModule,
@@ -25,6 +27,8 @@ import {MatButtonModule, MatCheckboxModule} from '@angular/material';
   providers: [
     StatusBar,
     SplashScreen,
+      BaseDadesService,
+      SQLite,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

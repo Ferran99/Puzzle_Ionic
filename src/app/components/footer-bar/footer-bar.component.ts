@@ -24,7 +24,7 @@ export class FooterBarComponent {
   buttonFooter(buttomPress) {
       switch (buttomPress) {
         case 1:
-          this.navCtrl.navigateForward('/home');
+          this.navCtrl.navigateForward('/');
           this.buttonReset();
           break;
         case 2:
@@ -37,7 +37,8 @@ export class FooterBarComponent {
           this.button4.emit ( 1 );
           break;
         case 5:
-          this.button5.emit ( 1 );
+          this.navCtrl.navigateForward('/results');
+          this.buttonReset();
           break;
       }
     }
