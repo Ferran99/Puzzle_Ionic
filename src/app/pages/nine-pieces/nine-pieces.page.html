@@ -78,6 +78,7 @@
             <div class="example-box" *ngFor="let item of todo" [cdkDragData]="item" cdkDrag><img [class]="item.done"
                 [src]="img"></div>
           </div>
+          <a>{{timeLeft}}</a>
         </div>
       </ion-col>
     </ion-row>

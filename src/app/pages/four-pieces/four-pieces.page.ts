@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, CdkDropList, transferArrayItem, CdkDrag, moveItemInArray } from '@angular/cdk/drag-drop';
 import { AlertController } from '@ionic/angular';
-
+import { timer } from 'rxjs';
 @Component({
   selector: 'app-four-pieces',
   templateUrl: './four-pieces.page.html',
@@ -17,6 +17,9 @@ export class FourPiecesPage implements OnInit {
   img = '';
   selectImg = 'slide-in-bottom';
   footerClass = '';
+  timeLeft = 0;
+  interval;
+  subscribeTimer: any;
 
   ngOnInit() {
   }
@@ -50,6 +53,7 @@ export class FourPiecesPage implements OnInit {
   }
 
   async presentAlertConfirm() {
+    this.pauseTimer();
     const alert = await this.alertController.create({
       header: 'Hecho!',
       message: 'Has completado el puzzle',
@@ -66,6 +70,7 @@ export class FourPiecesPage implements OnInit {
   }
 
   changeImg(img: string) {
+    this.startTimer();
     this.reload();
     this.muestraComponente();
     this.img = img;
@@ -117,5 +122,18 @@ export class FourPiecesPage implements OnInit {
       this.selectImg = 'slide-out-bottom';
       this.footerClass = 'slide-in-bottom';
     }
+  }
+  startTimer() {
+    this.interval = setInterval(() => {
+      if(this.timeLeft >= 0) {
+        this.timeLeft ++;
+      } else {
+        this.timeLeft = 0;
+      }
+    },1000)
+  }
+
+  pauseTimer() {
+    clearInterval(this.interval);
   }
 }

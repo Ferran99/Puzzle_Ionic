@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, CdkDropList, transferArrayItem, CdkDrag, moveItemInArray } from '@angular/cdk/drag-drop';
 import { AlertController } from '@ionic/angular';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-nine-pieces',
@@ -20,6 +21,9 @@ export class NinePiecesPage implements OnInit {
   done9 = [];
   img = '';
   selectImg = 'slide-in-bottom';
+  timeLeft = 0;
+  interval;
+  subscribeTimer: any;
 
   ngOnInit() {
   }
@@ -58,6 +62,7 @@ export class NinePiecesPage implements OnInit {
   }
 
   async presentAlertConfirm() {
+    this.pauseTimer();
     const alert = await this.alertController.create({
       header: 'Hecho!',
       message: 'Has completado el puzzle',
@@ -77,6 +82,7 @@ export class NinePiecesPage implements OnInit {
 
 
   changeImg(img: string) {
+    this.startTimer();
     this.reload();
     this.muestraComponente();
     this.img = img;
@@ -135,5 +141,18 @@ export class NinePiecesPage implements OnInit {
     } else {
       this.selectImg = 'slide-out-bottom';
     }
+  }
+  startTimer() {
+    this.interval = setInterval(() => {
+      if(this.timeLeft >= 0) {
+        this.timeLeft ++;
+      } else {
+        this.timeLeft = 0;
+      }
+    },1000)
+  }
+
+  pauseTimer() {
+    clearInterval(this.interval);
   }
 }
