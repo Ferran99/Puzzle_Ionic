@@ -71,8 +71,8 @@ formulary = false;
   async presentAlertConfirm() {
     this.pauseTimer();
     const alert = await this.alertController.create({
-      header: 'Hecho!',
-      message: 'Has completado el puzzle',
+        header: 'Done!',
+        message: 'Puzzle completed successfully',
       buttons: [
         {
           text: '👍',

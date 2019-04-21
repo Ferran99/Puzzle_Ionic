@@ -61,8 +61,8 @@ export class FourPiecesPage implements OnInit {
   async presentAlertConfirm() {
     this.pauseTimer();
     const alert = await this.alertController.create({
-      header: 'Hecho!',
-      message: 'Has completado el puzzle',
+      header: 'Done!',
+      message: 'Puzzle completed successfully',
       buttons: [
         {
           text: '👍',
@@ -161,7 +161,7 @@ export class FourPiecesPage implements OnInit {
 
           });
     }).catch(e => {
-      console.log(e); 
+      console.log(e);
 
     });
     this.id ++;
