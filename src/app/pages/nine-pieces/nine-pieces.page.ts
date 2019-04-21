@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, CdkDropList, transferArrayItem, CdkDrag, moveItemInArray } from '@angular/cdk/drag-drop';
 import { AlertController } from '@ionic/angular';
 import { timer } from 'rxjs';
+import {SQLite, SQLiteObject} from '@ionic-native/sqlite/ngx';
 
 @Component({
   selector: 'app-nine-pieces',
@@ -9,6 +10,7 @@ import { timer } from 'rxjs';
   styleUrls: ['./nine-pieces.page.scss'],
 })
 export class NinePiecesPage implements OnInit {
+
   todo = [];
   done1 = [];
   done2 = [];
@@ -23,12 +25,17 @@ export class NinePiecesPage implements OnInit {
   selectImg = 'slide-in-bottom';
   timeLeft = 0;
   interval;
-  subscribeTimer: any;
+  id = 0;
+formulary = false;
+  db: SQLiteObject = null;
+  tasques: any[] = [];
 
+  data: any = {'username': String, 'score': Number};
   ngOnInit() {
   }
 
-  constructor(public alertController: AlertController) {
+  constructor( public alertController: AlertController,   private sqlite: SQLite,) {
+
     this.todo = [
       { value: '1', done: 'done1' },
       { value: '2', done: 'done2' },
@@ -71,17 +78,21 @@ export class NinePiecesPage implements OnInit {
           text: '👍',
           handler: () => {
             this.reload();
+            this.formulary = true;
           }
         }
       ]
     });
 
     await alert.present();
+
+
   }
 
 
 
   changeImg(img: string) {
+
     this.startTimer();
     this.reload();
     this.muestraComponente();
@@ -154,5 +165,35 @@ export class NinePiecesPage implements OnInit {
 
   pauseTimer() {
     clearInterval(this.interval);
+  }
+
+  logForm(form) {
+    console.log(form.value);
+    this.saveData(form.value);
+  }
+  saveData(data) {
+    this.data.username = data;
+    this.data.score = this.timeLeft;
+    this.tasques.push(this.data);
+    this.sqlite.create({
+      name: 'ionicdb.db',
+      location: 'default'
+    }).then((db: SQLiteObject) => {
+      db.executeSql('INSERT INTO tasques VALUES(?,?,?)', [this.id, this.data.username, this.data.score])
+          .then(res => {
+            console.log(res);
+
+          })
+          .catch(e => {
+            console.log(e);
+
+          });
+    }).catch(e => {
+      console.log(e);
+
+    });
+    this.id ++;
+    this.timeLeft = 0;
+      this.formulary = false;
   }
 }

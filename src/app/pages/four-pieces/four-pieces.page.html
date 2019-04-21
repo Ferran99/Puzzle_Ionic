@@ -1,4 +1,4 @@
-<div class="container4Pieces">
+<div class="container4Pieces" *ngIf="!formulary">
   <div class="tablero">
     <ion-row text-center padding-top>
       <ion-col size-xs="12" size-sm="12">
@@ -48,6 +48,17 @@
       </ion-col>
     </ion-row>
   </div>
+</div>
+<div *ngIf="formulary">
+    <form #form="ngForm"  novalidate>
+        <ion-item>
+            <ion-label>Username</ion-label>
+            <ion-input  #title id="title"type="text" required  ></ion-input>
+
+        </ion-item>
+
+        <button ion-button type="submit" (click)="logForm(title)" block>Add Todo</button>
+    </form>
 </div>
 <footerBar *ngIf="img" (selectedImg)="changeImg( $event )" (button3)="muestraComponente( $event )"></footerBar>
 <selectImg *ngIf="selectImg" (selectedImg)="changeImg( $event )" [ngClass]="selectImg"></selectImg>

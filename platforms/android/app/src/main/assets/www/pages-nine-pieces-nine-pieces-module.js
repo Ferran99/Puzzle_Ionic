@@ -64,7 +64,7 @@ var NinePiecesPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <div class=\"tablero\">\n    <ion-row text-center padding-top>\n      <ion-col size-xs=\"12\" size-sm=\"12\">\n        <div class=\"example-container\">\n          <div id=\"done1\" cdkDropList #doneList1=\"cdkDropList\" [cdkDropListData]=\"done1\"\n            [cdkDropListConnectedTo]=\"[todoList]\" class=\"example-list\" (cdkDropListDropped)=\"drop($event)\"\n            [cdkDropListEnterPredicate]=\"evenPredicate\">\n            <div class=\"example-box\" *ngFor=\"let item of done1\" cdkDrag><img class=\"done1\" [src]=\"img\"></div>\n          </div>\n        </div>\n        <div class=\"example-container\">\n          <div id=\"done2\" cdkDropList #doneList2=\"cdkDropList\" [cdkDropListData]=\"done2\"\n            [cdkDropListConnectedTo]=\"[todoList]\" class=\"example-list\" (cdkDropListDropped)=\"drop($event)\"\n            [cdkDropListEnterPredicate]=\"evenPredicate\">\n            <div class=\"example-box\" *ngFor=\"let item of done2\" cdkDrag><img class=\"done2\" [src]=\"img\"></div>\n          </div>\n        </div>\n        <div class=\"example-container\">\n          <div id=\"done3\" cdkDropList #doneList3=\"cdkDropList\" [cdkDropListData]=\"done3\"\n            [cdkDropListConnectedTo]=\"[todoList]\" class=\"example-list\" (cdkDropListDropped)=\"drop($event)\"\n            [cdkDropListEnterPredicate]=\"evenPredicate\">\n            <div class=\"example-box\" *ngFor=\"let item of done3\" cdkDrag><img class=\"done3\" [src]=\"img\"></div>\n          </div>\n        </div>\n        <div class=\"example-container\">\n          <div id=\"done4\" cdkDropList #doneList4=\"cdkDropList\" [cdkDropListData]=\"done4\"\n            [cdkDropListConnectedTo]=\"[todoList]\" class=\"example-list\" (cdkDropListDropped)=\"drop($event)\"\n            [cdkDropListEnterPredicate]=\"evenPredicate\">\n            <div class=\"example-box\" *ngFor=\"let item of done4\" cdkDrag><img class=\"done4\" [src]=\"img\"></div>\n          </div>\n        </div>\n        <div class=\"example-container\">\n          <div id=\"done5\" cdkDropList #doneList5=\"cdkDropList\" [cdkDropListData]=\"done5\"\n            [cdkDropListConnectedTo]=\"[todoList]\" class=\"example-list\" (cdkDropListDropped)=\"drop($event)\"\n            [cdkDropListEnterPredicate]=\"evenPredicate\">\n            <div class=\"example-box\" *ngFor=\"let item of done5\" cdkDrag><img class=\"done5\" [src]=\"img\"></div>\n          </div>\n        </div>\n        <div class=\"example-container\">\n          <div id=\"done6\" cdkDropList #doneList6=\"cdkDropList\" [cdkDropListData]=\"done6\"\n            [cdkDropListConnectedTo]=\"[todoList]\" class=\"example-list\" (cdkDropListDropped)=\"drop($event)\"\n            [cdkDropListEnterPredicate]=\"evenPredicate\">\n            <div class=\"example-box\" *ngFor=\"let item of done6\" cdkDrag><img class=\"done6\" [src]=\"img\"></div>\n          </div>\n        </div>\n        <div class=\"example-container\">\n          <div id=\"done7\" cdkDropList #doneList7=\"cdkDropList\" [cdkDropListData]=\"done7\"\n            [cdkDropListConnectedTo]=\"[todoList]\" class=\"example-list\" (cdkDropListDropped)=\"drop($event)\"\n            [cdkDropListEnterPredicate]=\"evenPredicate\">\n            <div class=\"example-box\" *ngFor=\"let item of done7\" cdkDrag><img class=\"done7\" [src]=\"img\"></div>\n          </div>\n        </div>\n        <div class=\"example-container\">\n          <div id=\"done8\" cdkDropList #doneList8=\"cdkDropList\" [cdkDropListData]=\"done8\"\n            [cdkDropListConnectedTo]=\"[todoList]\" class=\"example-list\" (cdkDropListDropped)=\"drop($event)\"\n            [cdkDropListEnterPredicate]=\"evenPredicate\">\n            <div class=\"example-box\" *ngFor=\"let item of done8\" cdkDrag><img class=\"done8\" [src]=\"img\"></div>\n          </div>\n        </div>\n        <div class=\"example-container\">\n          <div id=\"done9\" cdkDropList #doneList9=\"cdkDropList\" [cdkDropListData]=\"done9\"\n            [cdkDropListConnectedTo]=\"[todoList]\" class=\"example-list\" (cdkDropListDropped)=\"drop($event)\"\n            [cdkDropListEnterPredicate]=\"evenPredicate\">\n            <div class=\"example-box\" *ngFor=\"let item of done9\" cdkDrag><img class=\"done9\" [src]=\"img\"></div>\n          </div>\n        </div>\n      </ion-col>\n    </ion-row>\n  </div>\n  <div class=\"selectPiece\">\n    <ion-row>\n      <ion-col size-xs=\"12\" size-sm=\"12\">\n        <div class=\"pieces-container\">\n          <div id=\"pieces\" cdkDropList #todoList=\"cdkDropList\" [cdkDropListData]=\"todo\"\n            [cdkDropListConnectedTo]=\"[doneList1, doneList2, doneList3, doneList4, doneList5, doneList6, doneList7, doneList8, doneList9]\"\n            class=\"example-list\" (cdkDropListDropped)=\"drop($event)\">\n            <div class=\"example-box\" *ngFor=\"let item of todo\" [cdkDragData]=\"item\" cdkDrag><img [class]=\"item.done\"\n                [src]=\"img\"></div>\n          </div>\n        </div>\n      </ion-col>\n    </ion-row>\n  </div>\n</div>\n<footerBar *ngIf=\"img\" (selectedImg)=\"changeImg( $event )\" (button3)=\"muestraComponente( $event )\"></footerBar>\n<selectImg *ngIf=\"selectImg\" (selectedImg)=\"changeImg( $event )\" [ngClass]=\"selectImg\"></selectImg>\n"
+module.exports = "<div *ngIf=\"!formulary\" class=\"container\">\n  <div class=\"tablero\">\n    <ion-row text-center padding-top>\n      <ion-col size-xs=\"12\" size-sm=\"12\">\n        <div class=\"example-container\">\n          <div id=\"done1\" cdkDropList #doneList1=\"cdkDropList\" [cdkDropListData]=\"done1\"\n            [cdkDropListConnectedTo]=\"[todoList]\" class=\"example-list\" (cdkDropListDropped)=\"drop($event)\"\n            [cdkDropListEnterPredicate]=\"evenPredicate\">\n            <div class=\"example-box\" *ngFor=\"let item of done1\" cdkDrag><img class=\"done1\" [src]=\"img\"></div>\n          </div>\n        </div>\n        <div class=\"example-container\">\n          <div id=\"done2\" cdkDropList #doneList2=\"cdkDropList\" [cdkDropListData]=\"done2\"\n            [cdkDropListConnectedTo]=\"[todoList]\" class=\"example-list\" (cdkDropListDropped)=\"drop($event)\"\n            [cdkDropListEnterPredicate]=\"evenPredicate\">\n            <div class=\"example-box\" *ngFor=\"let item of done2\" cdkDrag><img class=\"done2\" [src]=\"img\"></div>\n          </div>\n        </div>\n        <div class=\"example-container\">\n          <div id=\"done3\" cdkDropList #doneList3=\"cdkDropList\" [cdkDropListData]=\"done3\"\n            [cdkDropListConnectedTo]=\"[todoList]\" class=\"example-list\" (cdkDropListDropped)=\"drop($event)\"\n            [cdkDropListEnterPredicate]=\"evenPredicate\">\n            <div class=\"example-box\" *ngFor=\"let item of done3\" cdkDrag><img class=\"done3\" [src]=\"img\"></div>\n          </div>\n        </div>\n        <div class=\"example-container\">\n          <div id=\"done4\" cdkDropList #doneList4=\"cdkDropList\" [cdkDropListData]=\"done4\"\n            [cdkDropListConnectedTo]=\"[todoList]\" class=\"example-list\" (cdkDropListDropped)=\"drop($event)\"\n            [cdkDropListEnterPredicate]=\"evenPredicate\">\n            <div class=\"example-box\" *ngFor=\"let item of done4\" cdkDrag><img class=\"done4\" [src]=\"img\"></div>\n          </div>\n        </div>\n        <div class=\"example-container\">\n          <div id=\"done5\" cdkDropList #doneList5=\"cdkDropList\" [cdkDropListData]=\"done5\"\n            [cdkDropListConnectedTo]=\"[todoList]\" class=\"example-list\" (cdkDropListDropped)=\"drop($event)\"\n            [cdkDropListEnterPredicate]=\"evenPredicate\">\n            <div class=\"example-box\" *ngFor=\"let item of done5\" cdkDrag><img class=\"done5\" [src]=\"img\"></div>\n          </div>\n        </div>\n        <div class=\"example-container\">\n          <div id=\"done6\" cdkDropList #doneList6=\"cdkDropList\" [cdkDropListData]=\"done6\"\n            [cdkDropListConnectedTo]=\"[todoList]\" class=\"example-list\" (cdkDropListDropped)=\"drop($event)\"\n            [cdkDropListEnterPredicate]=\"evenPredicate\">\n            <div class=\"example-box\" *ngFor=\"let item of done6\" cdkDrag><img class=\"done6\" [src]=\"img\"></div>\n          </div>\n        </div>\n        <div class=\"example-container\">\n          <div id=\"done7\" cdkDropList #doneList7=\"cdkDropList\" [cdkDropListData]=\"done7\"\n            [cdkDropListConnectedTo]=\"[todoList]\" class=\"example-list\" (cdkDropListDropped)=\"drop($event)\"\n            [cdkDropListEnterPredicate]=\"evenPredicate\">\n            <div class=\"example-box\" *ngFor=\"let item of done7\" cdkDrag><img class=\"done7\" [src]=\"img\"></div>\n          </div>\n        </div>\n        <div class=\"example-container\">\n          <div id=\"done8\" cdkDropList #doneList8=\"cdkDropList\" [cdkDropListData]=\"done8\"\n            [cdkDropListConnectedTo]=\"[todoList]\" class=\"example-list\" (cdkDropListDropped)=\"drop($event)\"\n            [cdkDropListEnterPredicate]=\"evenPredicate\">\n            <div class=\"example-box\" *ngFor=\"let item of done8\" cdkDrag><img class=\"done8\" [src]=\"img\"></div>\n          </div>\n        </div>\n        <div class=\"example-container\">\n          <div id=\"done9\" cdkDropList #doneList9=\"cdkDropList\" [cdkDropListData]=\"done9\"\n            [cdkDropListConnectedTo]=\"[todoList]\" class=\"example-list\" (cdkDropListDropped)=\"drop($event)\"\n            [cdkDropListEnterPredicate]=\"evenPredicate\">\n            <div class=\"example-box\" *ngFor=\"let item of done9\" cdkDrag><img class=\"done9\" [src]=\"img\"></div>\n          </div>\n        </div>\n      </ion-col>\n    </ion-row>\n  </div>\n  <div class=\"selectPiece\">\n    <ion-row>\n      <ion-col size-xs=\"12\" size-sm=\"12\">\n        <div class=\"pieces-container\">\n          <div id=\"pieces\" cdkDropList #todoList=\"cdkDropList\" [cdkDropListData]=\"todo\"\n            [cdkDropListConnectedTo]=\"[doneList1, doneList2, doneList3, doneList4, doneList5, doneList6, doneList7, doneList8, doneList9]\"\n            class=\"example-list\" (cdkDropListDropped)=\"drop($event)\">\n            <div class=\"example-box\" *ngFor=\"let item of todo\" [cdkDragData]=\"item\" cdkDrag><img [class]=\"item.done\"\n                [src]=\"img\"></div>\n          </div>\n          <a>{{timeLeft}}</a>\n        </div>\n      </ion-col>\n    </ion-row>\n  </div>\n</div>\n<div *ngIf=\"formulary\">\n<form #form=\"ngForm\"  novalidate>\n  <ion-item>\n    <ion-label>Username</ion-label>\n      <ion-input  #title id=\"title\"type=\"text\" required  ></ion-input>\n\n  </ion-item>\n\n  <button ion-button type=\"submit\" (click)=\"logForm(title)\" block>Add Todo</button>\n</form>\n</div>\n<footerBar *ngIf=\"img\" (selectedImg)=\"changeImg( $event )\" (button3)=\"muestraComponente( $event )\"></footerBar>\n<selectImg *ngIf=\"selectImg\" (selectedImg)=\"changeImg( $event )\" [ngClass]=\"selectImg\"></selectImg>\n"
 
 /***/ }),
 
@@ -93,13 +93,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/cdk/drag-drop */ "./node_modules/@angular/cdk/esm5/drag-drop.es5.js");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var _ionic_native_sqlite_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic-native/sqlite/ngx */ "./node_modules/@ionic-native/sqlite/ngx/index.js");
+
 
 
 
 
 var NinePiecesPage = /** @class */ (function () {
-    function NinePiecesPage(alertController) {
+    function NinePiecesPage(alertController, sqlite) {
         this.alertController = alertController;
+        this.sqlite = sqlite;
         this.todo = [];
         this.done1 = [];
         this.done2 = [];
@@ -112,6 +115,12 @@ var NinePiecesPage = /** @class */ (function () {
         this.done9 = [];
         this.img = '';
         this.selectImg = 'slide-in-bottom';
+        this.timeLeft = 0;
+        this.id = 0;
+        this.formulary = false;
+        this.db = null;
+        this.tasques = [];
+        this.data = { 'username': String, 'score': Number };
         this.todo = [
             { value: '1', done: 'done1' },
             { value: '2', done: 'done2' },
@@ -150,18 +159,21 @@ var NinePiecesPage = /** @class */ (function () {
             var _this = this;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.alertController.create({
-                            header: 'Hecho!',
-                            message: 'Has completado el puzzle',
-                            buttons: [
-                                {
-                                    text: '👍',
-                                    handler: function () {
-                                        _this.reload();
+                    case 0:
+                        this.pauseTimer();
+                        return [4 /*yield*/, this.alertController.create({
+                                header: 'Hecho!',
+                                message: 'Has completado el puzzle',
+                                buttons: [
+                                    {
+                                        text: '👍',
+                                        handler: function () {
+                                            _this.reload();
+                                            _this.formulary = true;
+                                        }
                                     }
-                                }
-                            ]
-                        })];
+                                ]
+                            })];
                     case 1:
                         alert = _a.sent();
                         return [4 /*yield*/, alert.present()];
@@ -173,6 +185,7 @@ var NinePiecesPage = /** @class */ (function () {
         });
     };
     NinePiecesPage.prototype.changeImg = function (img) {
+        this.startTimer();
         this.reload();
         this.muestraComponente();
         this.img = img;
@@ -228,13 +241,52 @@ var NinePiecesPage = /** @class */ (function () {
             this.selectImg = 'slide-out-bottom';
         }
     };
+    NinePiecesPage.prototype.startTimer = function () {
+        var _this = this;
+        this.interval = setInterval(function () {
+            if (_this.timeLeft >= 0) {
+                _this.timeLeft++;
+            }
+            else {
+                _this.timeLeft = 0;
+            }
+        }, 1000);
+    };
+    NinePiecesPage.prototype.pauseTimer = function () {
+        clearInterval(this.interval);
+    };
+    NinePiecesPage.prototype.logForm = function (form) {
+        console.log(form.value);
+        this.saveData(form.value);
+    };
+    NinePiecesPage.prototype.saveData = function (data) {
+        var _this = this;
+        this.data.username = data;
+        this.data.score = this.timeLeft;
+        this.tasques.push(this.data);
+        this.sqlite.create({
+            name: 'ionicdb.db',
+            location: 'default'
+        }).then(function (db) {
+            db.executeSql('INSERT INTO tasques VALUES(?,?,?)', [_this.id, _this.data.username, _this.data.score])
+                .then(function (res) {
+                console.log(res);
+            })
+                .catch(function (e) {
+                console.log(e);
+            });
+        }).catch(function (e) {
+            console.log(e);
+        });
+        this.id++;
+    };
     NinePiecesPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-nine-pieces',
             template: __webpack_require__(/*! ./nine-pieces.page.html */ "./src/app/pages/nine-pieces/nine-pieces.page.html"),
             styles: [__webpack_require__(/*! ./nine-pieces.page.scss */ "./src/app/pages/nine-pieces/nine-pieces.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"], _ionic_native_sqlite_ngx__WEBPACK_IMPORTED_MODULE_4__["SQLite"]])
     ], NinePiecesPage);
     return NinePiecesPage;
 }());

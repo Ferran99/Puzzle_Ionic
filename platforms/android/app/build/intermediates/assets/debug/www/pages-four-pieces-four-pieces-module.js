@@ -64,7 +64,7 @@ var FourPiecesPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container4Pieces\">\n  <div class=\"tablero\">\n    <ion-row text-center padding-top>\n      <ion-col size-xs=\"12\" size-sm=\"12\">\n        <div class=\"example-container\">\n          <div id=\"done1\" cdkDropList #doneList1=\"cdkDropList\" [cdkDropListData]=\"done1\"\n            [cdkDropListConnectedTo]=\"[todoList]\" class=\"example-list\" (cdkDropListDropped)=\"drop($event)\"\n            [cdkDropListEnterPredicate]=\"evenPredicate\">\n            <div class=\"example-box\" *ngFor=\"let item of done1\" cdkDrag><img class=\"done1\" [src]=\"img\"></div>\n          </div>\n        </div>\n        <div class=\"example-container\">\n          <div id=\"done2\" cdkDropList #doneList2=\"cdkDropList\" [cdkDropListData]=\"done2\"\n            [cdkDropListConnectedTo]=\"[todoList]\" class=\"example-list\" (cdkDropListDropped)=\"drop($event)\"\n            [cdkDropListEnterPredicate]=\"evenPredicate\">\n            <div class=\"example-box\" *ngFor=\"let item of done2\" cdkDrag><img class=\"done2\" [src]=\"img\"></div>\n          </div>\n        </div>\n        <div class=\"example-container\">\n          <div id=\"done3\" cdkDropList #doneList3=\"cdkDropList\" [cdkDropListData]=\"done3\"\n            [cdkDropListConnectedTo]=\"[todoList]\" class=\"example-list\" (cdkDropListDropped)=\"drop($event)\"\n            [cdkDropListEnterPredicate]=\"evenPredicate\">\n            <div class=\"example-box\" *ngFor=\"let item of done3\" cdkDrag><img class=\"done3\" [src]=\"img\"></div>\n          </div>\n        </div>\n        <div class=\"example-container\">\n          <div id=\"done4\" cdkDropList #doneList4=\"cdkDropList\" [cdkDropListData]=\"done4\"\n            [cdkDropListConnectedTo]=\"[todoList]\" class=\"example-list\" (cdkDropListDropped)=\"drop($event)\"\n            [cdkDropListEnterPredicate]=\"evenPredicate\">\n            <div class=\"example-box\" *ngFor=\"let item of done4\" cdkDrag><img class=\"done4\" [src]=\"img\"></div>\n          </div>\n        </div>\n      </ion-col>\n    </ion-row>\n  </div>\n  <div class=\"selectPiece\">\n    <ion-row>\n      <ion-col size-xs=\"12\" size-sm=\"12\">\n        <div class=\"pieces-container\">\n          <div id=\"pieces\" cdkDropList #todoList=\"cdkDropList\" [cdkDropListData]=\"todo\"\n            [cdkDropListConnectedTo]=\"[doneList1, doneList2, doneList3, doneList4]\" class=\"example-list\"\n            (cdkDropListDropped)=\"drop($event)\">\n            <div class=\"example-box\" *ngFor=\"let item of todo\" [cdkDragData]=\"item\" cdkDrag><img [class]=\"item.done\"\n                [src]=\"img\"></div>\n          </div>\n        </div>\n      </ion-col>\n    </ion-row>\n  </div>\n</div>\n<footerBar *ngIf=\"img\" (selectedImg)=\"changeImg( $event )\" (button3)=\"muestraComponente( $event )\"></footerBar>\n<selectImg *ngIf=\"selectImg\" (selectedImg)=\"changeImg( $event )\" [ngClass]=\"selectImg\"></selectImg>\n"
+module.exports = "<div class=\"container4Pieces\">\n  <div class=\"tablero\">\n    <ion-row text-center padding-top>\n      <ion-col size-xs=\"12\" size-sm=\"12\">\n        <div class=\"example-container\">\n          <div id=\"done1\" cdkDropList #doneList1=\"cdkDropList\" [cdkDropListData]=\"done1\"\n            [cdkDropListConnectedTo]=\"[todoList]\" class=\"example-list\" (cdkDropListDropped)=\"drop($event)\"\n            [cdkDropListEnterPredicate]=\"evenPredicate\">\n            <div class=\"example-box\" *ngFor=\"let item of done1\" cdkDrag><img class=\"done1\" [src]=\"img\"></div>\n          </div>\n        </div>\n        <div class=\"example-container\">\n          <div id=\"done2\" cdkDropList #doneList2=\"cdkDropList\" [cdkDropListData]=\"done2\"\n            [cdkDropListConnectedTo]=\"[todoList]\" class=\"example-list\" (cdkDropListDropped)=\"drop($event)\"\n            [cdkDropListEnterPredicate]=\"evenPredicate\">\n            <div class=\"example-box\" *ngFor=\"let item of done2\" cdkDrag><img class=\"done2\" [src]=\"img\"></div>\n          </div>\n        </div>\n        <div class=\"example-container\">\n          <div id=\"done3\" cdkDropList #doneList3=\"cdkDropList\" [cdkDropListData]=\"done3\"\n            [cdkDropListConnectedTo]=\"[todoList]\" class=\"example-list\" (cdkDropListDropped)=\"drop($event)\"\n            [cdkDropListEnterPredicate]=\"evenPredicate\">\n            <div class=\"example-box\" *ngFor=\"let item of done3\" cdkDrag><img class=\"done3\" [src]=\"img\"></div>\n          </div>\n        </div>\n        <div class=\"example-container\">\n          <div id=\"done4\" cdkDropList #doneList4=\"cdkDropList\" [cdkDropListData]=\"done4\"\n            [cdkDropListConnectedTo]=\"[todoList]\" class=\"example-list\" (cdkDropListDropped)=\"drop($event)\"\n            [cdkDropListEnterPredicate]=\"evenPredicate\">\n            <div class=\"example-box\" *ngFor=\"let item of done4\" cdkDrag><img class=\"done4\" [src]=\"img\"></div>\n          </div>\n        </div>\n      </ion-col>\n    </ion-row>\n  </div>\n  <div class=\"selectPiece\">\n    <ion-row>\n      <ion-col size-xs=\"12\" size-sm=\"12\">\n        <div class=\"pieces-container\">\n          <div id=\"pieces\" cdkDropList #todoList=\"cdkDropList\" [cdkDropListData]=\"todo\"\n            [cdkDropListConnectedTo]=\"[doneList1, doneList2, doneList3, doneList4]\" class=\"example-list\"\n            (cdkDropListDropped)=\"drop($event)\">\n            <div class=\"example-box\" *ngFor=\"let item of todo\" [cdkDragData]=\"item\" cdkDrag><img [class]=\"item.done\"\n                [src]=\"img\"></div>\n          </div>\n          <a>{{timeLeft}}</a>\n        </div>\n      </ion-col>\n    </ion-row>\n  </div>\n</div>\n<footerBar *ngIf=\"img\" (selectedImg)=\"changeImg( $event )\" (button3)=\"muestraComponente( $event )\"></footerBar>\n<selectImg *ngIf=\"selectImg\" (selectedImg)=\"changeImg( $event )\" [ngClass]=\"selectImg\"></selectImg>\n"
 
 /***/ }),
 
@@ -108,6 +108,7 @@ var FourPiecesPage = /** @class */ (function () {
         this.img = '';
         this.selectImg = 'slide-in-bottom';
         this.footerClass = '';
+        this.timeLeft = 0;
         this.todo = [
             { value: '1', done: 'done1' },
             { value: '2', done: 'done2' },
@@ -141,18 +142,20 @@ var FourPiecesPage = /** @class */ (function () {
             var _this = this;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.alertController.create({
-                            header: 'Hecho!',
-                            message: 'Has completado el puzzle',
-                            buttons: [
-                                {
-                                    text: '👍',
-                                    handler: function () {
-                                        _this.reload();
+                    case 0:
+                        this.pauseTimer();
+                        return [4 /*yield*/, this.alertController.create({
+                                header: 'Hecho!',
+                                message: 'Has completado el puzzle',
+                                buttons: [
+                                    {
+                                        text: '👍',
+                                        handler: function () {
+                                            _this.reload();
+                                        }
                                     }
-                                }
-                            ]
-                        })];
+                                ]
+                            })];
                     case 1:
                         alert = _a.sent();
                         return [4 /*yield*/, alert.present()];
@@ -164,6 +167,7 @@ var FourPiecesPage = /** @class */ (function () {
         });
     };
     FourPiecesPage.prototype.changeImg = function (img) {
+        this.startTimer();
         this.reload();
         this.muestraComponente();
         this.img = img;
@@ -211,6 +215,20 @@ var FourPiecesPage = /** @class */ (function () {
             this.selectImg = 'slide-out-bottom';
             this.footerClass = 'slide-in-bottom';
         }
+    };
+    FourPiecesPage.prototype.startTimer = function () {
+        var _this = this;
+        this.interval = setInterval(function () {
+            if (_this.timeLeft >= 0) {
+                _this.timeLeft++;
+            }
+            else {
+                _this.timeLeft = 0;
+            }
+        }, 1000);
+    };
+    FourPiecesPage.prototype.pauseTimer = function () {
+        clearInterval(this.interval);
     };
     FourPiecesPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({

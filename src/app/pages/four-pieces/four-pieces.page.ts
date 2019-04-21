@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, CdkDropList, transferArrayItem, CdkDrag, moveItemInArray } from '@angular/cdk/drag-drop';
 import { AlertController } from '@ionic/angular';
 import { timer } from 'rxjs';
+import {SQLiteObject, SQLite} from '@ionic-native/sqlite/ngx';
 @Component({
   selector: 'app-four-pieces',
   templateUrl: './four-pieces.page.html',
   styleUrls: ['./four-pieces.page.scss'],
 })
 export class FourPiecesPage implements OnInit {
-
+  data: any = {'username': String, 'score': Number};
   todo = [];
   done1 = [];
   done2 = [];
@@ -19,12 +20,17 @@ export class FourPiecesPage implements OnInit {
   footerClass = '';
   timeLeft = 0;
   interval;
+  tasques: any[] = [];
+
+  id = 0;
+  formulary = false;
+  db: SQLiteObject = null;
   subscribeTimer: any;
 
   ngOnInit() {
   }
 
-  constructor(public alertController: AlertController) {
+  constructor(public alertController: AlertController, private sqlite: SQLite) {
     this.todo = [
       { value: '1', done: 'done1' },
       { value: '2', done: 'done2' },
@@ -62,6 +68,7 @@ export class FourPiecesPage implements OnInit {
           text: '👍',
           handler: () => {
             this.reload();
+            this.formulary = true;
           }
         }
       ]
@@ -136,4 +143,32 @@ export class FourPiecesPage implements OnInit {
   pauseTimer() {
     clearInterval(this.interval);
   }
-}
+  saveData(data) {
+    this.data.username = data;
+    this.data.score = this.timeLeft;
+    this.tasques.push(this.data);
+    this.sqlite.create({
+      name: 'ionicdb.db',
+      location: 'default'
+    }).then((db: SQLiteObject) => {
+      db.executeSql('INSERT INTO tasques VALUES(?,?,?)', [this.id, this.data.username, this.data.score])
+          .then(res => {
+            console.log(res);
+
+          })
+          .catch(e => {
+            console.log(e);
+
+          });
+    }).catch(e => {
+      console.log(e); 
+
+    });
+    this.id ++;
+    this.timeLeft = 0;
+    this.formulary = false;
+  }
+  logForm(form) {
+    console.log(form.value);
+    this.saveData(form.value);
+  }}

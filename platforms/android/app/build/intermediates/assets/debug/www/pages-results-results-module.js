@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-button (click)=\"saveData()\">Add</ion-button><br><br><br><br>\n  <ion-item-sliding #sliding *ngFor=\"let tasca of tasques; let i = index\">\n    <ion-item >\n      <ion-label>{{ tasca.titol }}</ion-label>\n    </ion-item>\n  </ion-item-sliding>\n</ion-header>\n<footerBar ></footerBar>\n\n"
+module.exports = "<ion-header>\n  <ion-button (click)=\"obtenirTotesTasques()\">Show Results</ion-button>\n  <ion-item >\n    <ion-label>Username</ion-label>\n    <ion-label>Score</ion-label>\n  </ion-item>\n  <ion-item-sliding #sliding *ngFor=\"let tasca of tasques; let i = index\">\n    <ion-item >\n      <ion-label>{{ tasca.username }}</ion-label>\n      <ion-label>{{ tasca.score }}</ion-label>\n    </ion-item>\n  </ion-item-sliding>\n</ion-header>\n<footerBar ></footerBar>\n\n"
 
 /***/ }),
 
@@ -35,13 +35,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
-/* harmony import */ var _ionic_native_sqlite_ngx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic-native/sqlite/ngx */ "./node_modules/@ionic-native/sqlite/ngx/index.js");
+/* harmony import */ var _services_baseDadesService_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/baseDadesService.service */ "./src/app/services/baseDadesService.service.ts");
+/* harmony import */ var _ionic_native_sqlite_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic-native/sqlite/ngx */ "./node_modules/@ionic-native/sqlite/ngx/index.js");
+
 
 
 
 
 var ResultsComponent = /** @class */ (function () {
-    function ResultsComponent(navCtrl, sqlite) {
+    function ResultsComponent(baseDadesService, navCtrl, sqlite) {
+        this.baseDadesService = baseDadesService;
         this.navCtrl = navCtrl;
         this.sqlite = sqlite;
         this.db = null;
@@ -50,14 +53,17 @@ var ResultsComponent = /** @class */ (function () {
     }
     ResultsComponent.prototype.saveData = function () {
         var _this = this;
+        // this.baseDades.recuperarTots();
+        this.createDatabase();
         this.data.titol = 'Ferran';
         this.data.completada = false;
+        this.data.id = 1;
         this.tasques.push(this.data);
         this.sqlite.create({
             name: 'ionicdb.db',
             location: 'default'
         }).then(function (db) {
-            db.executeSql('INSERT INTO tasques VALUES(?,?)', [_this.data.titol, _this.data.completada])
+            db.executeSql('INSERT INTO tasques VALUES(?,?,?)', [_this.data.id, _this.data.titol, _this.data.completada])
                 .then(function (res) {
                 console.log(res);
             })
@@ -68,14 +74,42 @@ var ResultsComponent = /** @class */ (function () {
             console.log(e);
         });
     };
+    ResultsComponent.prototype.obtenirTotesTasques = function () {
+        var _this = this;
+        this.sqlite.create({
+            name: 'ionicdb.db',
+            location: 'default'
+        }).then(function (db) {
+            db.executeSql('SELECT * FROM tasques ORDER BY id DESC', [])
+                .then(function (response) {
+                for (var index = 0; index < response.rows.length; index++) {
+                    _this.tasques.push(response.rows.item(index));
+                }
+            })
+                .catch(function (error) { return console.log(error); });
+        });
+    };
+    ResultsComponent.prototype.ionViewDidLoad = function () {
+    };
+    ResultsComponent.prototype.createDatabase = function () {
+        this.sqlite.create({
+            name: 'ionicdb.db',
+            location: 'default'
+        }).then(function (db) {
+            db.executeSql('CREATE TABLE IF NOT EXISTS tasques(id INTEGER PRIMARY KEY AUTOINCREMENT, titol TEXT, completada INTEGER)', [])
+                .then(function (res) { return console.log('Executed SQL'); })
+                .catch(function (e) { return console.log(e); });
+        }).catch(function (e) { return console.log(e); });
+    };
     ResultsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'baseDades',
             template: __webpack_require__(/*! ./results.component.html */ "./src/app/pages/results/results.component.html"),
             styles: [__webpack_require__(/*! ./results.component.scss */ "./src/app/pages/results/results.component.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavController"],
-            _ionic_native_sqlite_ngx__WEBPACK_IMPORTED_MODULE_3__["SQLite"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_baseDadesService_service__WEBPACK_IMPORTED_MODULE_3__["BaseDadesService"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["NavController"],
+            _ionic_native_sqlite_ngx__WEBPACK_IMPORTED_MODULE_4__["SQLite"]])
     ], ResultsComponent);
     return ResultsComponent;
 }());

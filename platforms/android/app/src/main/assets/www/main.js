@@ -976,18 +976,14 @@ var AppComponent = /** @class */ (function () {
         });
     };
     AppComponent.prototype.createDatabase = function () {
-        var _this = this;
         this.sqlite.create({
-            name: 'data.db',
-            location: 'default' // the location field is required
-        })
-            .then(function (db) {
-            _this.baseDadesService.assignarBD(db);
-            return _this.baseDadesService.createTable();
-        })
-            .catch(function (error) {
-            console.error(error);
-        });
+            name: 'ionicdb.db',
+            location: 'default'
+        }).then(function (db) {
+            db.executeSql('CREATE TABLE IF NOT EXISTS tasques(id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, score INTEGER)', [])
+                .then(function (res) { return console.log('Executed SQL'); })
+                .catch(function (e) { return console.log(e); });
+        }).catch(function (e) { return console.log(e); });
     };
     AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
