@@ -8,11 +8,13 @@ import { SelectComponent } from './selectImg/selectImg.component';
 import { FooterBarComponent } from './footer-bar/footer-bar.component';
 import {SQLite} from '@ionic-native/sqlite/ngx';
 import {BaseDadesService} from '../services/baseDadesService.service';
+import {GeolocalitzacioComponent} from './geolocalitzacio/geolocalitzacio.component';
 
 @NgModule({
   declarations: [
     SelectComponent,
     FooterBarComponent,
+    GeolocalitzacioComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,9 @@ import {BaseDadesService} from '../services/baseDadesService.service';
   ],
   exports: [
     SelectComponent,
-    FooterBarComponent
+
+    FooterBarComponent,
+    GeolocalitzacioComponent
   ],
   providers: [
     Camera,

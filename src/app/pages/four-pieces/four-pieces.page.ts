@@ -3,6 +3,7 @@ import { CdkDragDrop, CdkDropList, transferArrayItem, CdkDrag, moveItemInArray }
 import { AlertController } from '@ionic/angular';
 import { timer } from 'rxjs';
 import {SQLiteObject, SQLite} from '@ionic-native/sqlite/ngx';
+import {GeolocalitzacioComponent} from '../../components/geolocalitzacio/geolocalitzacio.component';
 @Component({
   selector: 'app-four-pieces',
   templateUrl: './four-pieces.page.html',
@@ -30,7 +31,7 @@ export class FourPiecesPage implements OnInit {
   ngOnInit() {
   }
 
-  constructor(public alertController: AlertController, private sqlite: SQLite) {
+  constructor(public alertController: AlertController, private sqlite: SQLite, private geolocalitzation: GeolocalitzacioComponent) {
     this.todo = [
       { value: '1', done: 'done1' },
       { value: '2', done: 'done2' },

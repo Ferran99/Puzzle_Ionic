@@ -24,9 +24,12 @@ const routes: Routes = [
     IonicModule,
     DragDropModule,
     ComponentsModule,
-    RouterModule.forChild(routes)
+
+    RouterModule.forChild(routes),
   ],
-  declarations: [FourPiecesPage]
+  declarations: [
+      FourPiecesPage,
+    ]
 })
 
 export class FourPiecesPageModule {}

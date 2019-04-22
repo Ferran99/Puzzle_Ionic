@@ -13,6 +13,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 import {SQLite} from '@ionic-native/sqlite/ngx';
 import {BaseDadesService} from './services/baseDadesService.service';
+import {Geolocation} from '@ionic-native/geolocation/ngx';
+import {GeolocalitzacioComponent} from './components/geolocalitzacio/geolocalitzacio.component';
+import {AndroidPermissions} from '@ionic-native/android-permissions/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,6 +32,9 @@ import {BaseDadesService} from './services/baseDadesService.service';
     SplashScreen,
       BaseDadesService,
       SQLite,
+      Geolocation,
+      AndroidPermissions,
+      GeolocalitzacioComponent,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

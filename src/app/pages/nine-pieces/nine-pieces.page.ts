@@ -192,6 +192,7 @@ formulary = false;
       console.log(e);
 
     });
+    console.log(this.id);
     this.id ++;
     this.timeLeft = 0;
       this.formulary = false;
