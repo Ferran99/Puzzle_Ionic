@@ -92,8 +92,7 @@
       <ion-input  #title id="title"type="text" required  ></ion-input>
 
   </ion-item>
-
-  <button ion-button type="submit" (click)="logForm(title)" block>Add Todo</button>
+  <ion-button (click)="logForm(title)">Insert User</ion-button>
 </form>
 </div>
 <footerBar *ngIf="img" (selectedImg)="changeImg( $event )" (button3)="muestraComponente( $event )"></footerBar>

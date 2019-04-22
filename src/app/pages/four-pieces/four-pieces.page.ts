@@ -152,20 +152,30 @@ export class FourPiecesPage implements OnInit {
       name: 'ionicdb.db',
       location: 'default'
     }).then((db: SQLiteObject) => {
-      db.executeSql('INSERT INTO tasques VALUES(?,?,?)', [this.id, this.data.username, this.data.score])
-          .then(res => {
-            console.log(res);
+      db.executeSql('SELECT * FROM tasques ORDER BY id DESC', [])
+          .then(response => {
+
+
+            this.id = response.rows.length;
+            this.id ++;
+            db.executeSql('INSERT INTO tasques VALUES(?,?,?)', [this.id, this.data.username, this.data.score])
+                .then(res => {
+                  console.log(res);
+
+                })
+                .catch(e => {
+                  console.log(e);
+
+                });
 
           })
-          .catch(e => {
-            console.log(e);
+          .catch(error => console.log(error));
 
-          });
     }).catch(e => {
       console.log(e);
 
     });
-    this.id ++;
+    console.log(this.id);
     this.timeLeft = 0;
     this.formulary = false;
   }

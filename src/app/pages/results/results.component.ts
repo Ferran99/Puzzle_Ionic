@@ -54,7 +54,7 @@ export class ResultsComponent {
             location: 'default'
         }).then((db: SQLiteObject) => {
 
-            db.executeSql('SELECT * FROM tasques ORDER BY id DESC', [])
+            db.executeSql('SELECT * FROM tasques ORDER BY score ASC', [])
                 .then(response => {
 
                     for (let index = 0; index < response.rows.length; index++) {
