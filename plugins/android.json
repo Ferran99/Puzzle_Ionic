@@ -40,6 +40,18 @@
     },
     "cordova-plugin-geolocation": {
       "PACKAGE_NAME": "io.ionic.starter"
+    },
+    "cordova-plugin-touch-id": {
+      "PACKAGE_NAME": "io.ionic.starter"
+    },
+    "cordova-plugin-fingerprint-aio": {
+      "PACKAGE_NAME": "io.ionic.starter"
+    },
+    "cordova-plugin-pincheck": {
+      "PACKAGE_NAME": "io.ionic.starter"
+    },
+    "cordova-plugin-pin-dialog": {
+      "PACKAGE_NAME": "io.ionic.starter"
     }
   },
   "dependent_plugins": {}

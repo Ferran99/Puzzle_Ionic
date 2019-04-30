@@ -109,6 +109,38 @@ module.exports = [
     "file": "plugins/cordova-plugin-geolocation/www/PositionError.js",
     "pluginId": "cordova-plugin-geolocation",
     "runs": true
+  },
+  {
+    "id": "cordova-plugin-touch-id.TouchID",
+    "file": "plugins/cordova-plugin-touch-id/www/TouchID.js",
+    "pluginId": "cordova-plugin-touch-id",
+    "clobbers": [
+      "window.plugins.touchid"
+    ]
+  },
+  {
+    "id": "cordova-plugin-fingerprint-aio.Fingerprint",
+    "file": "plugins/cordova-plugin-fingerprint-aio/www/Fingerprint.js",
+    "pluginId": "cordova-plugin-fingerprint-aio",
+    "clobbers": [
+      "Fingerprint"
+    ]
+  },
+  {
+    "id": "cordova-plugin-pincheck.PinCheck",
+    "file": "plugins/cordova-plugin-pincheck/www/PinCheck.js",
+    "pluginId": "cordova-plugin-pincheck",
+    "clobbers": [
+      "cordova.plugins.PinCheck"
+    ]
+  },
+  {
+    "id": "cordova-plugin-pin-dialog.PinDialog",
+    "file": "plugins/cordova-plugin-pin-dialog/www/pin.js",
+    "pluginId": "cordova-plugin-pin-dialog",
+    "merges": [
+      "window.plugins.pinDialog"
+    ]
   }
 ];
 module.exports.metadata = 
@@ -124,7 +156,11 @@ module.exports.metadata =
   "cordova-plugin-android-permissions": "1.0.0",
   "cordova-sqlite-storage": "3.2.0",
   "cordova-plugin-x-toast": "2.7.2",
-  "cordova-plugin-geolocation": "4.0.1"
+  "cordova-plugin-geolocation": "4.0.1",
+  "cordova-plugin-touch-id": "3.3.1",
+  "cordova-plugin-fingerprint-aio": "1.7.0",
+  "cordova-plugin-pincheck": "0.0.6",
+  "cordova-plugin-pin-dialog": "0.1.3"
 };
 // BOTTOM OF METADATA
 });

@@ -34,7 +34,9 @@ export class FooterBarComponent {
           this.button3.emit ( 1 );
           break;
         case 4:
-          this.button4.emit ( 1 );
+
+          this.navCtrl.navigateForward('/fingerPrint');
+          this.buttonReset();
           break;
         case 5:
           this.navCtrl.navigateForward('/results');

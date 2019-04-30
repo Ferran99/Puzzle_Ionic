@@ -88,5 +88,45 @@
     },
     "is_top_level": true,
     "variables": {}
+  },
+  "cordova-plugin-touch-id": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-touch-id"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-fingerprint-aio": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-fingerprint-aio"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-pincheck": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-pincheck"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-pin-dialog": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-pin-dialog@0.1.3"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-keychain-touch-id": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-keychain-touch-id@3.2.1"
+    },
+    "is_top_level": true,
+    "variables": {}
   }
 }

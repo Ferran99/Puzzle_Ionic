@@ -6,8 +6,9 @@ const routes: Routes = [
   { path: '', loadChildren: './pages/home/home.module#HomePageModule' },
   { path: 'fourPieces', loadChildren: './pages/four-pieces/four-pieces.module#FourPiecesPageModule' },
   { path: 'ninePieces', loadChildren: './pages/nine-pieces/nine-pieces.module#NinePiecesPageModule' },
-  { path: 'results', loadChildren: './pages/results/results.module#ResultsModule'}
-];
+  { path: 'results', loadChildren: './pages/results/results.module#ResultsModule'},
+  { path: 'fingerPrint', loadChildren: './pages/FingerPrint/finger-print.module#FingerPrintModule'}
+    ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
